@@ -1,0 +1,21 @@
+.Navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  vertical-align: middle;
+  position: relative;
+  text-align: center;
+  background-color: rgb(255, 233, 205);
+}
+
+.Navbar h1 {
+  margin-right: 10%;
+}
+
+.gif {
+  height: 15vh;
+  object-fit: contain;
+  mix-blend-mode: color-burn;
+  order: -1;
+}
