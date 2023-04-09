@@ -1,23 +1,14 @@
 import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
+import "./Home.css";
 
 const Home = () => {
   return (
     <>
-      <Navbar />
+      <Sidebar />
       <div className="Home">
-        <div className="sidebar">
-          <div className="side-title">
-            <h1>Sidebar title</h1>
-          </div>
-          <div className="book-title">
-            <ul>
-              <li>Can't hurt me</li>
-              <li>This is the reason</li>
-              <li>Who are you</li>
-            </ul>
-          </div>
-        </div>
+        <Navbar />
 
         <div className="main">
           <h2>THis is the body part that goes to the middle</h2>

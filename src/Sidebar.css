@@ -1,0 +1,28 @@
+.Sidebar {
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  width: 15%;
+  z-index: 1;
+  border-right: 2px solid #000000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.side-title {
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-title li {
+  margin-bottom: 1em;
+}
+.book-title li:hover {
+  color: rgb(30, 0, 255);
+  transition: color 0.2s;
+  cursor: pointer;
+}
