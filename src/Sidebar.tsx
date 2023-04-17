@@ -1,18 +1,45 @@
 import "./Sidebar.css";
+import Button from "@mui/material/Button";
+import { BookInfo } from "./globals";
+import { useEffect, useState, useRef } from "react";
 
-const Sidebar = () => {
+interface SidebarProps {
+  bookTitle: string[];
+  setBookTitle: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+const Sidebar = (props: SidebarProps) => {
+  const { bookTitle, setBookTitle } = props;
+  const [name, setName] = useState<string>("");
+
+  useEffect(() => {
+    console.log("🥳", bookTitle);
+  }, [bookTitle]);
+
+  const listBookTitle = bookTitle.map((title, index) => {
+    return <li key={index}>{title}</li>;
+  });
+
+  const showBook = () => {
+    setBookTitle((current) => [...current, "Kazuki"]);
+    console.log(bookTitle);
+  };
   return (
     <>
       <div className="Sidebar">
         <div className="side-title">
           <h2>Book List</h2>
+          <Button variant="outlined" onClick={showBook}>
+            Add Book
+          </Button>
         </div>
+        <h3>{name}</h3>
         <div className="book-title">
-          <ul>
-            <li>Can't hurt me</li>
-            <li>Steve Jobs</li>
-            <li>Who are you</li>
-          </ul>
+          {bookTitle[0] !== undefined ? (
+            <ul>{listBookTitle}</ul>
+          ) : (
+            "No books yet!"
+          )}
         </div>
       </div>
     </>
