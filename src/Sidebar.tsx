@@ -6,10 +6,11 @@ import { useEffect, useState, useRef } from "react";
 interface SidebarProps {
   bookTitle: string[];
   setBookTitle: React.Dispatch<React.SetStateAction<string[]>>;
+  setClickedIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 const Sidebar = (props: SidebarProps) => {
-  const { bookTitle, setBookTitle } = props;
+  const { bookTitle, setBookTitle, setClickedIndex } = props;
   const [name, setName] = useState<string>("");
 
   useEffect(() => {
@@ -17,7 +18,11 @@ const Sidebar = (props: SidebarProps) => {
   }, [bookTitle]);
 
   const listBookTitle = bookTitle.map((title, index) => {
-    return <li key={index}>{title}</li>;
+    return (
+      <li key={index} onClick={() => setClickedIndex(index)}>
+        {title}
+      </li>
+    );
   });
 
   const showBook = () => {
