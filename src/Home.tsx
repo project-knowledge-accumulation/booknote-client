@@ -1,5 +1,5 @@
 import { mockData } from "./Mockdata";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { BookNote, BookInfo, noteCollection } from "./globals";
 import axios from "axios";
 import Navbar from "./Navbar";
@@ -19,10 +19,15 @@ const Home = () => {
   );
   const [focusedNote, setFocusedNote] = useState<noteCollection[] | []>([]);
   const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+  const mounted = useRef<boolean>(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const bookRef = useRef<BookInfo[] | []>([]);
 
   useEffect(() => {
-    console.log("Fetching from java with " + uId.current);
-    fetchUserData();
+    if (mounted.current === false) {
+      fetchUserData();
+      mounted.current = true;
+    }
   }, []);
 
   // useEffect(() => {
@@ -45,16 +50,33 @@ const Home = () => {
   }, [clickedIndex]);
 
   const fetchUserData = async () => {
-    await axios
-      .get(`http://localhost:8080/home/${uId.current}`)
-      .then((response) => console.log(response.data));
+    //await axios.get(`http://localhost:8080/home/${uId.current}`)
+    await axios.get(`http://localhost:8080/home/12uagre`).then((response) => {
+      console.log(response.data);
+      if (bookInfo[0] === undefined) {
+        setBookInfo(response.data.bookInfo);
+        bookRef.current = response.data.bookInfo;
+      }
+      if (bookInfo) {
+        setBookTitle((current) => [
+          ...current,
+          ...response.data.bookInfo.map((book: any) => book["title"]),
+        ]);
+        setNoteCollection((cur) => [
+          ...cur,
+          ...response.data.bookInfo.map((book: any) => book["noteCollection"]),
+        ]);
+      }
+    });
   };
+
   return (
     <>
       <Sidebar
         bookTitle={bookTitle}
         setBookTitle={setBookTitle}
         setClickedIndex={setClickedIndex}
+        isLoading={isLoading}
       />
       <div className="Home">
         <Navbar />

@@ -5,18 +5,15 @@ import { useEffect, useState, useRef } from "react";
 
 interface SidebarProps {
   bookTitle: string[];
+  isLoading: boolean;
   setBookTitle: React.Dispatch<React.SetStateAction<string[]>>;
   setClickedIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 const Sidebar = (props: SidebarProps) => {
-  const { bookTitle, setBookTitle, setClickedIndex } = props;
+  const { bookTitle, setBookTitle, setClickedIndex, isLoading } = props;
   const [name, setName] = useState<string>("");
-
-  useEffect(() => {
-    console.log("🥳", bookTitle);
-  }, [bookTitle]);
-
+  
   const listBookTitle = bookTitle.map((title, index) => {
     return (
       <li key={index} onClick={() => setClickedIndex(index)}>
@@ -26,8 +23,8 @@ const Sidebar = (props: SidebarProps) => {
   });
 
   const showBook = () => {
-    setBookTitle((current) => [...current, "Kazuki"]);
     console.log(bookTitle);
+    setBookTitle((current) => [...current, "Kazuki"]);
   };
   return (
     <>
@@ -40,11 +37,7 @@ const Sidebar = (props: SidebarProps) => {
         </div>
         <h3>{name}</h3>
         <div className="book-title">
-          {bookTitle[0] !== undefined ? (
-            <ul>{listBookTitle}</ul>
-          ) : (
-            "No books yet!"
-          )}
+          {bookTitle.length > 0 ? <ul>{listBookTitle}</ul> : "No books yet!!"}
         </div>
       </div>
     </>
