@@ -1,12 +1,12 @@
 import { mockData } from "./Mockdata";
 import { useState, useEffect, useContext, useRef } from "react";
-import { BookNote, BookInfo, noteCollection } from "./globals";
+import { BookNote, BookInfo, noteCollection } from "../globals";
 import axios from "axios";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
-import "./Home.css";
+import "../Styling/Home.css";
 import Body from "./Body";
-import AppContext from "./AppContext";
+import AppContext from "../AppContext";
 
 const Home = () => {
   const value = useContext(AppContext);
@@ -30,6 +30,7 @@ const Home = () => {
     }
   }, []);
 
+  //mock data for when fetching is troublesome.
   // useEffect(() => {
   //   if (bookInfo[0] === undefined) {
   //     setBookInfo(mockData.bookInfo);

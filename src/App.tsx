@@ -1,6 +1,6 @@
-import "./App.css";
-import Home from "./Home";
-import Login from "./Login";
+import "./Styling/App.css";
+import Home from "./Component/Home";
+import Login from "./Component/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useContext, useEffect, createContext, useRef } from "react";
 import AppContext from "./AppContext";

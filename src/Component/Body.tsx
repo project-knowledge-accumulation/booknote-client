@@ -1,6 +1,6 @@
 import { mockData } from "./Mockdata";
 import { useState, useEffect } from "react";
-import { BookNote, BookInfo, noteCollection } from "./globals";
+import { BookNote, BookInfo, noteCollection } from "../globals";
 import axios from "axios";
 
 interface BodyProp {

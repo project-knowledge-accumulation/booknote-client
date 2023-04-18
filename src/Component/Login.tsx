@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import AppContext from "./AppContext";
+import AppContext from "../AppContext";
 import axios from "axios";
 
 const Login = () => {

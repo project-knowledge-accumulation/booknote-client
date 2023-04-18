@@ -1,6 +1,6 @@
-import "./Sidebar.css";
+import "../Styling/Sidebar.css";
 import Button from "@mui/material/Button";
-import { BookInfo } from "./globals";
+import { BookInfo } from "../globals";
 import { useEffect, useState, useRef } from "react";
 
 interface SidebarProps {
@@ -13,7 +13,9 @@ interface SidebarProps {
 const Sidebar = (props: SidebarProps) => {
   const { bookTitle, setBookTitle, setClickedIndex, isLoading } = props;
   const [name, setName] = useState<string>("");
+  const [addButton, setAddButton] = useState<boolean>(false);
   
+
   const listBookTitle = bookTitle.map((title, index) => {
     return (
       <li key={index} onClick={() => setClickedIndex(index)}>

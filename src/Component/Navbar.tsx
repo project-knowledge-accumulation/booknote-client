@@ -1,7 +1,7 @@
-import "./Navbar.css";
+import "../Styling/Navbar.css";
 import { mockData } from "./Mockdata";
 import { useState, useEffect } from "react";
-import { BookNote, BookInfo } from "./globals";
+import { BookNote, BookInfo } from "../globals";
 import axios from "axios";
 
 
