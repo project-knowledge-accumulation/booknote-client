@@ -2,6 +2,7 @@ import "../Styling/Sidebar.css";
 import Button from "@mui/material/Button";
 import { BookInfo } from "../globals";
 import { useEffect, useState, useRef } from "react";
+import AddPrompt from "./AddPrompt";
 
 interface SidebarProps {
   bookTitle: string[];
@@ -13,8 +14,7 @@ interface SidebarProps {
 const Sidebar = (props: SidebarProps) => {
   const { bookTitle, setBookTitle, setClickedIndex, isLoading } = props;
   const [name, setName] = useState<string>("");
-  const [addButton, setAddButton] = useState<boolean>(false);
-  
+  const [isClicked, setIsClicked] = useState<boolean>(false);
 
   const listBookTitle = bookTitle.map((title, index) => {
     return (
@@ -25,8 +25,7 @@ const Sidebar = (props: SidebarProps) => {
   });
 
   const showBook = () => {
-    console.log(bookTitle);
-    setBookTitle((current) => [...current, "Kazuki"]);
+    setIsClicked(true);
   };
   return (
     <>
@@ -41,6 +40,8 @@ const Sidebar = (props: SidebarProps) => {
         <div className="book-title">
           {bookTitle.length > 0 ? <ul>{listBookTitle}</ul> : "No books yet!!"}
         </div>
+        {!isClicked ? "" : <AddPrompt bookTitle={bookTitle}
+        setBookTitle={setBookTitle} setClickedIndex={setClickedIndex} setIsClicked={setIsClicked}/>}
       </div>
     </>
   );

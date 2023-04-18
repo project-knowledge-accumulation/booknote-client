@@ -25,6 +25,7 @@ const Home = () => {
 
   useEffect(() => {
     if (mounted.current === false) {
+      console.log("This is fetching user.")
       fetchUserData();
       mounted.current = true;
     }
