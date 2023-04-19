@@ -10,10 +10,14 @@ body {
   overflow-x: hidden;
   background-color: antiquewhite;
 }
+
 .App {
   text-align: center;
 }
-
+.app-dark {
+  background-color: black;
+  opacity: 0.5;
+}
 li {
   list-style: none;
 }

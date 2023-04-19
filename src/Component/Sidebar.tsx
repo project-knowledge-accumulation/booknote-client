@@ -7,14 +7,15 @@ import AddPrompt from "./AddPrompt";
 interface SidebarProps {
   bookTitle: string[];
   isLoading: boolean;
+  isClicked: boolean;
+  setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
   setBookTitle: React.Dispatch<React.SetStateAction<string[]>>;
   setClickedIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 const Sidebar = (props: SidebarProps) => {
-  const { bookTitle, setBookTitle, setClickedIndex, isLoading } = props;
+  const { bookTitle, setBookTitle, setClickedIndex, isClicked, setIsClicked } = props;
   const [name, setName] = useState<string>("");
-  const [isClicked, setIsClicked] = useState<boolean>(false);
 
   const listBookTitle = bookTitle.map((title, index) => {
     return (

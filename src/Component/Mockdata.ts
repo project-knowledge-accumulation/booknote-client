@@ -4,6 +4,7 @@ export const mockData = {
     bookInfo: [
         {
             title: "Cant hurt me",
+            author: "David Goggins",
             noteCollection: [
                 {
                     page: 50,
@@ -17,6 +18,7 @@ export const mockData = {
         },
         {
             title: "Steve Jobs",
+            author: "William Shakespeare",
             noteCollection: [
                 {
                     page: 12,
@@ -30,6 +32,7 @@ export const mockData = {
         },
         {
             title: "never finish",
+            author: "Joe Rogan",
             noteCollection: [
                 {
                     page: 50,

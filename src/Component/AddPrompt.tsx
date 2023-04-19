@@ -1,6 +1,9 @@
+import "../Styling/AddPrompt.css";
 import Button from "@mui/material/Button";
 import { BookInfo } from "../globals";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
+import { bookInfo } from "../BookObject";
+import AppContext from "../AppContext";
 
 interface AddPromptProps {
   bookTitle: string[];
@@ -10,10 +13,12 @@ interface AddPromptProps {
 }
 
 const AddPrompt = (props: AddPromptProps) => {
-  const { bookTitle, setBookTitle, setClickedIndex, setIsClicked } = props;
+  const { bookTitle, setBookTitle, setClickedIndex} = props;
+  const value = useContext(AppContext);
+  const { uId, isClicked, setIsClicked } = value;
 
   //4.18
-  //currently add's a book to the array, but this button will need to 
+  //currently add's a book to the array, but this button will need to
   //instantiate a new object that represents one book object.
   /* 
     {
@@ -24,28 +29,40 @@ const AddPrompt = (props: AddPromptProps) => {
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-    const inputValue = e.target.elements.inputField.value;
+    const titleValue = e.target.elements?.titleField.value;
+    const authorValue = e.target.elements?.authorField.value;
+    //new bookInfo object.
+    const newBook = new bookInfo(titleValue, authorValue);
+    console.log(newBook);
 
-    setBookTitle((current) => [...current, inputValue]);
+    setBookTitle((current) => [...current, titleValue]);
     setIsClicked(false);
-    e.target.elements.inputField.value = "";
+    e.target.elements.titleField.value = "";
+    e.target.elements.authorField.value = "";
   };
 
   return (
     <>
       <div className="AddPrompt">
-        <h1>Input Form Example</h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleFormSubmit(e);
           }}
         >
-          <label htmlFor="inputField">
-            Enter your name:
-            <input type="text" id="inputField" name="inputField" />
+          <label htmlFor="titleField">
+            Book Title
+            <input type="text" id="titleField" name="titleField" />
           </label>
-          <button type="submit">Confirm</button>
+
+          <label htmlFor="authorField">
+            Author
+            <input type="text" id="authorField" name="authorField" />
+          </label>
+          <div className="form-button">
+            <button type="submit">Confirm</button>
+            <button onClick={() => setIsClicked(false)}>Cancel</button>
+          </div>
         </form>
       </div>
     </>

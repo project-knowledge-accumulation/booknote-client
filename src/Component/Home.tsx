@@ -10,7 +10,7 @@ import AppContext from "../AppContext";
 
 const Home = () => {
   const value = useContext(AppContext);
-  const { uId } = value;
+  const { uId, isClicked, setIsClicked } = value;
 
   const [bookInfo, setBookInfo] = useState<BookInfo[] | []>([]);
   const [bookTitle, setBookTitle] = useState<string[] | []>([]);
@@ -25,7 +25,7 @@ const Home = () => {
 
   useEffect(() => {
     if (mounted.current === false) {
-      console.log("This is fetching user.")
+      console.log("This is fetching user.");
       fetchUserData();
       mounted.current = true;
     }
@@ -73,18 +73,19 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div className="Home">
       <Sidebar
         bookTitle={bookTitle}
         setBookTitle={setBookTitle}
         setClickedIndex={setClickedIndex}
         isLoading={isLoading}
+        setIsClicked={setIsClicked}
+        isClicked={isClicked}
       />
-      <div className="Home">
-        <Navbar />
-        <Body focusedNote={focusedNote} />
-      </div>
-    </>
+      <Navbar />
+      <Body focusedNote={focusedNote} />
+      <strong>{isClicked ? "Light" : "Dark"}</strong>
+    </div>
   );
 };
 
