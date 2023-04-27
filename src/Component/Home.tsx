@@ -16,6 +16,8 @@ const Home = () => {
   const [bookInfo, setBookInfo] = useState<BookInfo[] | []>([]);
   const [bookTitle, setBookTitle] = useState<string[] | []>([]);
   const [bookAuthor, setBookAuthor] = useState<string[] | []>([]);
+  const [renderAuthor, setRenderAuthor] = useState<string | null>(null);
+  const [renderTitle, setRenderTitle] = useState<string | null>(null);
   const [noteCollection, setNoteCollection] = useState<noteCollection[][] | []>(
     []
   );
@@ -49,6 +51,8 @@ const Home = () => {
   useEffect(() => {
     if (clickedIndex !== null) {
       setFocusedNote(noteCollection[clickedIndex]);
+      setRenderAuthor(bookAuthor[clickedIndex])
+      setRenderTitle(bookTitle[clickedIndex])
       console.log("🥑", focusedNote);
     }
   }, [clickedIndex]);
@@ -70,7 +74,7 @@ const Home = () => {
           ...cur,
           ...response.data.bookInfo.map((book: any) => book["noteCollection"]),
         ]);
-        setNoteCollection((cur) => [
+        setBookAuthor((cur) => [
           ...cur,
           ...response.data.bookInfo.map((book: any) => book["author"]),
         ]);
@@ -89,7 +93,11 @@ const Home = () => {
         isClicked={isClicked}
       />
       <Navbar />
-      <Body focusedNote={focusedNote} />
+      <Body 
+      focusedNote={focusedNote} 
+      renderAuthor={renderAuthor}
+      renderTitle={renderTitle}
+      />
     </div>
   );
 };

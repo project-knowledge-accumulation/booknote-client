@@ -5,10 +5,12 @@ import axios from "axios";
 
 interface BodyProp {
   focusedNote: noteCollection[] | [];
+  renderAuthor: string | null;
+  renderTitle: string | null;
 }
 
 const Body = (props: BodyProp) => {
-  const { focusedNote } = props;
+  const { focusedNote, renderAuthor, renderTitle } = props;
 
   const showNote = focusedNote.map((page: noteCollection, index: number) => {
     return (
@@ -21,6 +23,15 @@ const Body = (props: BodyProp) => {
   return (
     <>
       <div className="Body">
+        {renderTitle && renderAuthor !== null ? (
+          <div className="body-header">
+            <h2>
+              {renderTitle} by {renderAuthor}
+            </h2>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="edit-button">
           <button>Add Note</button>
           <button>Delete</button>

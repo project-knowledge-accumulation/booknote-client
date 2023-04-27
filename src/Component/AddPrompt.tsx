@@ -29,6 +29,8 @@ const AddPrompt = (props: AddPromptProps) => {
     }
   */
 
+    
+
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
     const titleValue = e.target.elements?.titleField.value;
