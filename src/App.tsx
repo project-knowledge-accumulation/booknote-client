@@ -14,7 +14,6 @@ function App() {
   //   console.log("hello this is from App.ts");
   // }, []);
   const appClassName = isClicked ? "app-dark" : "app-light";
-
   const conditionalStyles = classNames("App", {
     "bkg-dark": isClicked,
     "bkg-light": !isClicked,
@@ -29,7 +28,7 @@ function App() {
       }}
     >
       <BrowserRouter>
-        <div className={conditionalStyles}>
+        <div className="App">
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="home" element={<Home />} />

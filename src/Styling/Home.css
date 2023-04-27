@@ -1,3 +1,7 @@
 .Home {
   margin-left: 15%;
 }
+
+.Home .bkg-dark {
+  background-color: #333; /* replace with your preferred dark color */
+}

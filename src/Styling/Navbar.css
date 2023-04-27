@@ -6,7 +6,7 @@
   vertical-align: middle;
   position: relative;
   text-align: center;
-  background-color: rgb(255, 233, 205);
+  /* background-color: rgb(255, 233, 205); */
 }
 
 .Navbar h1 {
@@ -18,4 +18,8 @@
   object-fit: contain;
   mix-blend-mode: color-burn;
   order: -1;
+}
+
+.book-title {
+  font-weight: bold;
 }

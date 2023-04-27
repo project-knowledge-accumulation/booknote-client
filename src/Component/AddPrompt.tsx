@@ -7,13 +7,15 @@ import AppContext from "../AppContext";
 
 interface AddPromptProps {
   bookTitle: string[];
+  isDark: boolean;
   setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDark: React.Dispatch<React.SetStateAction<boolean>>;
   setBookTitle: React.Dispatch<React.SetStateAction<string[]>>;
   setClickedIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 const AddPrompt = (props: AddPromptProps) => {
-  const { bookTitle, setBookTitle, setClickedIndex} = props;
+  const { bookTitle, setBookTitle, setClickedIndex, setIsDark, isDark } = props;
   const value = useContext(AppContext);
   const { uId, isClicked, setIsClicked } = value;
 
@@ -39,6 +41,8 @@ const AddPrompt = (props: AddPromptProps) => {
     setIsClicked(false);
     e.target.elements.titleField.value = "";
     e.target.elements.authorField.value = "";
+    document.documentElement.style.backgroundColor = "#faebd7";
+    document.body.style.backgroundColor = "#faebd7";
   };
 
   return (

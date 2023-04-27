@@ -21,6 +21,10 @@ const Body = (props: BodyProp) => {
   return (
     <>
       <div className="Body">
+        <div className="edit-button">
+          <button>Add Note</button>
+          <button>Delete</button>
+        </div>
         <ul className="note-list">{showNote}</ul>
       </div>
     </>

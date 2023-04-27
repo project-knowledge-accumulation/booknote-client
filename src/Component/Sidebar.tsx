@@ -3,6 +3,8 @@ import Button from "@mui/material/Button";
 import { BookInfo } from "../globals";
 import { useEffect, useState, useRef } from "react";
 import AddPrompt from "./AddPrompt";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 interface SidebarProps {
   bookTitle: string[];
@@ -14,8 +16,10 @@ interface SidebarProps {
 }
 
 const Sidebar = (props: SidebarProps) => {
-  const { bookTitle, setBookTitle, setClickedIndex, isClicked, setIsClicked } = props;
+  const { bookTitle, setBookTitle, setClickedIndex, isClicked, setIsClicked } =
+    props;
   const [name, setName] = useState<string>("");
+  const [isDark, setIsDark] = useState(false);
 
   const listBookTitle = bookTitle.map((title, index) => {
     return (
@@ -27,6 +31,8 @@ const Sidebar = (props: SidebarProps) => {
 
   const showBook = () => {
     setIsClicked(true);
+    document.documentElement.style.backgroundColor = "#1c1c1c";
+    document.body.style.backgroundColor ="#1c1c1c";
   };
   return (
     <>
@@ -41,8 +47,18 @@ const Sidebar = (props: SidebarProps) => {
         <div className="book-title">
           {bookTitle.length > 0 ? <ul>{listBookTitle}</ul> : "No books yet!!"}
         </div>
-        {!isClicked ? "" : <AddPrompt bookTitle={bookTitle}
-        setBookTitle={setBookTitle} setClickedIndex={setClickedIndex} setIsClicked={setIsClicked}/>}
+        {!isClicked ? (
+          ""
+        ) : (
+          <AddPrompt
+            bookTitle={bookTitle}
+            setBookTitle={setBookTitle}
+            setClickedIndex={setClickedIndex}
+            setIsClicked={setIsClicked}
+            setIsDark={setIsDark}
+            isDark={isDark}
+          />
+        )}
       </div>
     </>
   );

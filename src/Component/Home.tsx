@@ -7,6 +7,7 @@ import Sidebar from "./Sidebar";
 import "../Styling/Home.css";
 import Body from "./Body";
 import AppContext from "../AppContext";
+import classNames from "classnames";
 
 const Home = () => {
   const value = useContext(AppContext);
@@ -14,6 +15,7 @@ const Home = () => {
 
   const [bookInfo, setBookInfo] = useState<BookInfo[] | []>([]);
   const [bookTitle, setBookTitle] = useState<string[] | []>([]);
+  const [bookAuthor, setBookAuthor] = useState<string[] | []>([]);
   const [noteCollection, setNoteCollection] = useState<noteCollection[][] | []>(
     []
   );
@@ -53,7 +55,7 @@ const Home = () => {
 
   const fetchUserData = async () => {
     //await axios.get(`http://localhost:8080/home/${uId.current}`)
-    await axios.get(`http://localhost:8080/home/12uagre`).then((response) => {
+    await axios.get(`http://localhost:8080/home/nicenice`).then((response) => {
       console.log(response.data);
       if (bookInfo[0] === undefined) {
         setBookInfo(response.data.bookInfo);
@@ -67,6 +69,10 @@ const Home = () => {
         setNoteCollection((cur) => [
           ...cur,
           ...response.data.bookInfo.map((book: any) => book["noteCollection"]),
+        ]);
+        setNoteCollection((cur) => [
+          ...cur,
+          ...response.data.bookInfo.map((book: any) => book["author"]),
         ]);
       }
     });
@@ -84,7 +90,6 @@ const Home = () => {
       />
       <Navbar />
       <Body focusedNote={focusedNote} />
-      <strong>{isClicked ? "Light" : "Dark"}</strong>
     </div>
   );
 };
