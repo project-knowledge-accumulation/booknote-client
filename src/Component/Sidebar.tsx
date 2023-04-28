@@ -12,12 +12,23 @@ interface SidebarProps {
   isClicked: boolean;
   setIsClicked: React.Dispatch<React.SetStateAction<boolean>>;
   setBookTitle: React.Dispatch<React.SetStateAction<string[]>>;
+  setBookAuthor: React.Dispatch<React.SetStateAction<string[]>>;
   setClickedIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  setBookInfo: React.Dispatch<React.SetStateAction<BookInfo[] | []>>;
+  bookInfo: BookInfo[] | [];
 }
 
 const Sidebar = (props: SidebarProps) => {
-  const { bookTitle, setBookTitle, setClickedIndex, isClicked, setIsClicked } =
-    props;
+  const {
+    bookTitle,
+    setBookTitle,
+    setClickedIndex,
+    isClicked,
+    setIsClicked,
+    setBookInfo,
+    bookInfo,
+    setBookAuthor,
+  } = props;
   const [name, setName] = useState<string>("");
   const [isDark, setIsDark] = useState(false);
 
@@ -32,7 +43,7 @@ const Sidebar = (props: SidebarProps) => {
   const showBook = () => {
     setIsClicked(true);
     document.documentElement.style.backgroundColor = "#1c1c1c";
-    document.body.style.backgroundColor ="#1c1c1c";
+    document.body.style.backgroundColor = "#1c1c1c";
   };
   return (
     <>
@@ -57,6 +68,9 @@ const Sidebar = (props: SidebarProps) => {
             setIsClicked={setIsClicked}
             setIsDark={setIsDark}
             isDark={isDark}
+            bookInfo={bookInfo}
+            setBookInfo={setBookInfo}
+            setBookAuthor={setBookAuthor}
           />
         )}
       </div>

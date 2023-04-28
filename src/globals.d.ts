@@ -7,7 +7,7 @@ export type BookNote = {
   export type BookInfo = {
     title: string
     author?: string
-    noteCollection: noteCollection[]
+    noteCollection?: noteCollection[]
   }
   
   export type noteCollection = {

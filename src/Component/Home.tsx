@@ -91,12 +91,18 @@ const Home = () => {
         isLoading={isLoading}
         setIsClicked={setIsClicked}
         isClicked={isClicked}
+        bookInfo={bookInfo}
+      setBookInfo={setBookInfo}
+      setBookAuthor={setBookAuthor}
       />
       <Navbar />
       <Body 
       focusedNote={focusedNote} 
       renderAuthor={renderAuthor}
       renderTitle={renderTitle}
+      bookInfo={bookInfo}
+      setBookInfo={setBookInfo}
+      setFocusedNote={setFocusedNote}
       />
     </div>
   );
